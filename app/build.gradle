@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    defaultConfig {
+        applicationId "com.jiangdg.opencv4android"
+        minSdkVersion 18
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                arguments "-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang", "-DCMAKE_BUILD_TYPE=Release", '-DANDROID_STL=gnustl_static'
+                cppFlags "-std=c++11", "-frtti", "-fexceptions"
+                abiFilters 'armeabi', 'armeabi-v7a', 'x86', 'x86_64', 'arm64-v8a', 'mips', 'mips64'
+            }
+        }
+    }
+    sourceSets {
+        main {
+            jni.srcDirs = [] //禁止自动调用ndk-build命令
+            jniLibs.srcDir 'src/main/libs'  // 设置目标的so存放路径
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:25.+'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation project(':openCVLibrary330')
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+}

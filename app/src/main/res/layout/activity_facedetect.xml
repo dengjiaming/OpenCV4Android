@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:opencv="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <org.opencv.android.JavaCameraView
+        android:id="@+id/cameraView_face"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        opencv:camera_id="any"
+        opencv:show_fps="true" />
+
+    <Button
+        android:id="@+id/eigen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="eigen识别" />
+
+    <Button
+        android:id="@+id/fisher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/eigen"
+        android:layout_marginEnd="20dp"
+        android:layout_toStartOf="@+id/eigen"
+        android:text="fisher识别" />
+
+    <Button
+        android:id="@+id/lbph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/eigen"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/eigen"
+        android:text="lbph识别" />
+
+    <Button
+        android:id="@+id/eigen2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/eigen"
+        android:layout_alignStart="@+id/eigen"
+        android:layout_marginBottom="11dp"
+        android:text="eigen训练" />
+
+    <Button
+        android:id="@+id/fisher2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/eigen2"
+        android:layout_alignBottom="@+id/eigen2"
+        android:layout_alignStart="@+id/fisher"
+        android:text="fisher训练" />
+
+    <Button
+        android:id="@+id/lbph2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/eigen2"
+        android:layout_alignBottom="@+id/eigen2"
+        android:layout_alignStart="@+id/lbph"
+        android:text="lbph训练" />
+</RelativeLayout>
